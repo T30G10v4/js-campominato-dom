@@ -1,5 +1,7 @@
 const squareGrid = document.querySelector(".square-grid");
 
+const squares = document.getElementsByClassName("square");
+
 const goButton = document.getElementById("start");
 
 const difficulty = document.getElementById("difficulty");
@@ -17,6 +19,7 @@ goButton.addEventListener("click", function() {
     squareGrid.innerHTML = "";
     onGame = true;
     arrayBombs = [];
+    trys = 0;
 
     makeArrayBomb(numberOfBombs, parseInt(difficulty.value));
     
@@ -33,8 +36,6 @@ goButton.addEventListener("click", function() {
         makeGrid(squareGrid, 7);
 
     }
-
-    console.log(arrayBombs);   
 
 });
 
@@ -62,7 +63,7 @@ function makeGrid (HTMLElement, squaresNumber) {
 
 function onSquareClick() {
 
-    console.log(this.innerHTML);
+   
     
     if(arrayBombs.includes(parseInt(this.innerHTML))) {
 
@@ -70,13 +71,36 @@ function onSquareClick() {
         if(onGame) {
             this.classList.add("bg-red");
             onGame = false;
-            console.log("Trys", trys);
+           
         }    
 
-    } else if (onGame) {
+    }
+    
+    if (onGame) {
 
-        this.classList.add("bg-azure");
-        trys++;
+        if (this.classList.length<4) {
+
+            this.classList.add("bg-azure");
+            trys++; 
+        }
+        
+    } else {
+
+        for(let i = 1; i <= parseInt(difficulty.value); i++) {
+
+            const squareValue = squares[i-1].innerHTML;
+
+            console.log(squareValue);
+
+            if (arrayBombs.includes(parseInt(squareValue))) {
+
+                squares[i-1].classList.add("bg-red");
+
+            }
+
+
+        }
+
     }
     
 
