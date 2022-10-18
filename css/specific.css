@@ -1,0 +1,54 @@
+
+/*------VARIABLES------*/
+:root {
+
+    --bg-square: lightblue;
+    
+}
+
+/*------COMMON PARTS------*/
+
+/*------SPECIFIED PARTS BY ID------*/
+
+.square-grid {
+
+    width: 1000px;
+    height: 1000px;
+    
+
+}
+
+.square {
+
+    width: calc(100% / 10);
+    border: 1px solid black;
+    height: calc(100% / 10);
+
+}
+
+.square10 {
+
+    width: calc(100% / 10);
+    height: calc(100% / 10);
+
+}
+
+.square9 {
+
+    width: calc(100% / 9);
+    height: calc(100% / 9);
+
+}
+
+.square7 {
+
+    width: calc(100% / 7);
+    height: calc(100% / 7);
+
+}
+
+.bg-azure {
+
+    background-color: var(--bg-square);
+
+}
