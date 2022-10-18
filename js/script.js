@@ -6,6 +6,8 @@ const goButton = document.getElementById("start");
 
 const difficulty = document.getElementById("difficulty");
 
+const tryDom = document.getElementById("trys");
+
 const numberOfBombs = 16;
 
 let arrayBombs = [];
@@ -90,8 +92,6 @@ function onSquareClick() {
 
             const squareValue = squares[i-1].innerHTML;
 
-            console.log(squareValue);
-
             if (arrayBombs.includes(parseInt(squareValue))) {
 
                 squares[i-1].classList.add("bg-red");
@@ -101,7 +101,11 @@ function onSquareClick() {
 
         }
 
+        tryDom.innerHTML += trys.toString();
+
     }
+
+    
     
 
 }
