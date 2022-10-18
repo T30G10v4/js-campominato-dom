@@ -3,6 +3,7 @@
 :root {
 
     --bg-square: lightblue;
+    --bg-bomb: red;
     
 }
 
@@ -50,5 +51,11 @@
 .bg-azure {
 
     background-color: var(--bg-square);
+
+}
+
+.bg-red {
+
+    background-color: var(--bg-bomb);
 
 }

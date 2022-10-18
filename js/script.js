@@ -4,25 +4,37 @@ const goButton = document.getElementById("start");
 
 const difficulty = document.getElementById("difficulty");
 
+const numberOfBombs = 16;
+
+let arrayBombs = [];
+
+let trys = 0;
+
+let onGame = true;
+
 goButton.addEventListener("click", function() {
 
     squareGrid.innerHTML = "";
+    onGame = true;
+    arrayBombs = [];
+
+    makeArrayBomb(numberOfBombs, parseInt(difficulty.value));
     
-    if (difficulty.value === "difficulty1") {
+    if (difficulty.value === "100") {
 
         makeGrid(squareGrid, 10);
 
-    } else if (difficulty.value === "difficulty2") {
+    } else if (difficulty.value === "81") {
 
         makeGrid(squareGrid, 9);
 
-    } else if (difficulty.value === "difficulty3") {
+    } else if (difficulty.value === "49") {
 
         makeGrid(squareGrid, 7);
 
     }
 
-    console.log(difficulty.value);
+    console.log(arrayBombs);   
 
 });
 
@@ -42,16 +54,54 @@ function makeGrid (HTMLElement, squaresNumber) {
         square.innerHTML = i;
         squareDynamicClass = "square"+squaresNumber.toString();
         square.classList.add("square", squareDynamicClass, "flex-row-center-center");
-        
-    
-        square.addEventListener("click", function() {
-    
-            this.classList.add("bg-azure");
-            console.log(this.innerHTML);
-            
-        });
-    
+        square.addEventListener("click", onSquareClick);        
         HTMLElement.append(square);
 
     }
 }
+
+function onSquareClick() {
+
+    console.log(this.innerHTML);
+    
+    if(arrayBombs.includes(parseInt(this.innerHTML))) {
+
+        
+        if(onGame) {
+            this.classList.add("bg-red");
+            onGame = false;
+            console.log("Trys", trys);
+        }    
+
+    } else if (onGame) {
+
+        this.classList.add("bg-azure");
+        trys++;
+    }
+    
+
+}
+
+function makeArrayBomb(bombs, limit) {
+
+    while (arrayBombs.length<bombs) {
+
+        const bomb = getRndInteger(1, limit);
+
+        if (arrayBombs.includes(bomb)) {
+
+            continue;
+
+        } else {
+
+            arrayBombs.push(bomb);
+
+        }
+
+    }
+
+}
+
+function getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) ) + min;
+  }
